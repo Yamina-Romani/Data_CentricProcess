@@ -4,7 +4,12 @@ This project identifies potential microservices from a monolithic application us
 
 # Usage Example
 
-### Step 1: Prepare Your Data
+### Step 1: Clone the Repository
+```bash 
+git clone https://github.com/Yamina-Romani/Data_CentricProcess.git
+cd Data_CentricProcess
+```
+### Step 2: Prepare Your Data
 
 1. Place your data.json file (containing the data model) in the Data/monolith-project/ directory.
 2. Place the monolithic application's source code in the Data/monolith-project/monolith-sourceCode/ directory.
@@ -19,7 +24,7 @@ Data/
 │       ├── pom.xml
 │       └── ...
 ```
-### Step 2: Run the Project
+### Step 3: Run the Project
 Use the following command to analyze the monolith and identify microservices:
 
 ```bash 
