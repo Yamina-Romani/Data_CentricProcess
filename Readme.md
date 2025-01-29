@@ -7,6 +7,8 @@ This project identifies potential microservices from a monolithic application us
 ### Step 1: Clone the Repository
 ```bash 
 git clone https://github.com/Yamina-Romani/Data_CentricProcess.git
+```
+```bash
 cd Data_CentricProcess
 ```
 ### Step 2: Prepare Your Data
