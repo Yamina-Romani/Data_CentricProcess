@@ -1,0 +1,61 @@
+{
+
+      "posts":{
+      "columns": ["post_id", "user_id", "deleted", "title", "content", "renderedContent", "announcement", "postStatus", "postFormat", "postType", "posts_tags_id", "seoKeywords", "seoDescription", "seoPostData_id", "permalink"],
+      "primaryKey": ["post_id"],
+      "foreignKeys": ["user_id", "posts_tags_id", "seoPostData_id"]
+    },
+
+      "posts_likes":{
+      "columns": ["user_id", "post_id", "sympathy", "client_Ip", "isAdmin", "postes_likes_id"],
+      "primaryKey": ["postes_likes_id"],
+      "foreignKeys": ["user_id", "post_id"]
+    },
+
+      "posts_tags": {
+      "columns": ["posts_tags_id", "post_id", "tag_id"],
+      "primaryKey": ["posts_tags_id"],
+      "foreignKeys": ["post_id", "tag_id"]
+    },
+
+      "seo_posts_data": {
+      "columns": ["seoPostData_id", "post_id", "ogTitle", "ogType", "ogImage", "ogVideo", "ogLocale"],
+      "primaryKey": ["seoPostData_id"],
+      "foreignKeys": ["post_id"]
+    },
+
+      "seo_robots_agents": {
+      "columns": ["seo_robots_agents_id", "post_id", "ogTitle", "ogType", "ogImage", "ogVideo", "ogLocale"],
+      "primaryKey": ["seo_robots_agents_id"],
+      "foreignKeys": ["post_id"]
+    },
+
+      "settings": {
+      "columns": ["settings_id", "_key", "_value"],
+      "primaryKey": ["settings_id"]
+    },
+
+      "stored_files": {
+      "columns": ["stored_files_id", "user_id", "title", "name", "path", "size"],
+      "primaryKey": ["stored_files_id"],
+      "foreignKeys": ["user_id"]
+    },
+
+      "tags":{
+      "columns": ["tag_id", "name", "posts_tags_id"],
+      "primaryKey": ["tag_id"],
+      "foreignKeys": ["posts_tags_id"]
+    },
+
+      "users": {
+      "columns": ["user_id", "email", "password", "role", "posts", "storedFiles"],
+      "primaryKey": ["user_id"]
+    },
+
+      "visits":{
+      "columns": ["visit_id", "user_id", "post_id", "client_Ip", "isAdmin", "userAgent"],
+      "primaryKey": ["visit_id"],
+      "foreignKeys": ["user_id","post_id"]
+    }
+
+}

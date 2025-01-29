@@ -1,0 +1,151 @@
+{
+
+    "jforum_banlist": {
+      "columns": ["banlist_id", "user_id", "banlist_ip", "banlist_email"],
+      "primaryKey": "banlist_id",
+      "foreignKeys": ["user_id"]
+    },
+    "jforum_categories": {
+      "columns": ["category_id", "category_title", "category_order", "category_moderated", "category_theme_id"],
+      "primaryKey": "category_id",
+      "foreignKeys": ["theme_id"]
+    },
+    "jforum_config": {
+      "columns": ["config_name", "config_value", "config_id"],
+      "primaryKey": "config_id",
+      "foreignKeys": []
+    },
+    "jforum_forums": {
+      "columns": ["forum_id", "category_id", "forum_name", "forum_description", "forum_order", "forum_last_post_id", "forum_moderated", "forum_allow_anonymous_posts"],
+      "primaryKey": "forum_id",
+      "foreignKeys": ["category_id"]
+
+    },
+    "jforum_forums_watch": {
+      "columns": ["forum_id", "user_id"],
+      "primaryKey": ["forum_id", "user_id"],
+      "foreignKeys": ["forum_id", "user_id"]
+    },
+    "jforum_groups": {
+      "columns": ["group_id", "group_name", "group_description"],
+      "primaryKey": "group_id",
+      "foreignKeys": []
+
+    },
+    "jforum_user_groups": {
+      "columns": ["group_id", "user_id"],
+      "primaryKey": ["group_id", "user_id"],
+      "foreignKeys": ["group_id", "user_id"]
+
+    },
+    "jforum_roles": {
+      "columns": ["role_id", "group_id", "name"],
+      "primaryKey": "role_id",
+      "foreignKeys": ["group_id"]
+    },
+    "jforum_post_report": {
+      "columns": ["report_id", "report_date", "report_description", "report_status", "post_id", "user_id"],
+      "primaryKey": "report_id",
+      "foreignKeys": ["post_id", "user_id"]
+    },
+    "jforum_posts": {
+      "columns": ["post_id", "topic_id", "user_id", "forum_id", "post_date", "poster_ip", "enable_bbcode", "enable_html", "enable_smilies", "enable_sig", "post_edit_time", "post_edit_count", "status", "attach", "need_moderate", "post_subject", "post_text"],
+      "primaryKey": "post_id",
+      "foreignKeys": ["user_id", "topic_id", "forum_id"]
+    },
+    "jforum_privmsgs": {
+      "columns": ["privmsgs_id", "privmsgs_type", "privmsgs_subject", "privmsgs_from_userid", "privmsgs_to_userid", "privmsgs_date", "privmsgs_ip", "privmsgs_enable_bbcode", "privmsgs_enable_html", "privmsgs_enable_smilies", "privmsgs_attach_sig", "privmsgs_text"],
+      "primaryKey": "privmsgs_id",
+      "foreignKeys": []
+    },
+    "jforum_ranks": {
+      "columns": ["rank_id", "rank_title", "rank_min", "rank_special", "rank_image"],
+      "primaryKey": "rank_id",
+      "foreignKeys": []
+    },
+    "jforum_sessions": {
+      "columns": ["user_id", "session_start", "session_last_accessed", "session_last_visit", "session_ip"],
+      "primaryKey": "user_id",
+      "foreignKeys": ["user_id"]
+    },
+    "jforum_smilies": {
+      "columns": ["smilie_id", "code", "disk_name"],
+      "primaryKey": "smilie_id",
+      "foreignKeys": []
+
+    },
+    "jforum_themes": {
+      "columns": ["theme_id", "template_name", "style_name"],
+      "primaryKey": "theme_id",
+      "foreignKeys": []
+    },
+    "jforum_topics": {
+      "columns": ["topic_id", "forum_id", "topic_subject", "user_id", "topic_date", "topic_views", "topic_replies", "topic_status", "topic_vote_id", "topic_type", "topic_first_post_id", "topic_last_post_id", "topic_moved_id", "need_moderate", "has_attachment"],
+      "primaryKey": "topic_id",
+      "foreignKeys": ["forum_id", "user_id"]
+    },
+    "jforum_topics_watch": {
+      "columns": ["topics_watch_id", "topic_id", "user_id", "is_read"],
+      "primaryKey": "topics_watch_id",
+      "foreignKeys": ["topic_id", "user_id"]
+    },
+    "jforum_users": {
+      "columns": ["user_id", "user_active", "username", "user_password", "user_session_time", "user_session_page", "user_lastvisit", "user_regdate", "user_posts", "user_timezone", "user_style", "user_lang", "user_dateformat", "user_new_privmsg", "user_unread_privmsg", "user_last_privmsg", "user_emailtime", "user_viewemail", "user_attachsig", "user_allowhtml", "user_allowbbcode", "user_allowsmilies", "user_allowavatar", "user_allow_pm", "user_allow_viewonline", "user_notify", "user_notify_always", "user_notify_text", "user_notify_pm", "user_popup_pm", "rank_id", "avatar_id", "user_email", "user_website", "user_from", "user_sig", "user_aim", "user_yim", "user_msnm", "user_occ", "user_interests", "user_biography", "user_actkey", "gender", "themes_id", "deleted", "user_viewonline", "security_hash", "user_authhash"],
+      "primaryKey": "user_id",
+      "foreignKeys": ["rank_id", "avatar_id"]
+    },
+    "jforum_vote_desc": {
+      "columns": ["vote_id", "vote_text", "vote_start", "vote_length"],
+      "primaryKey": "vote_id",
+      "foreignKeys": []
+    },
+    "jforum_vote_results": {
+      "columns": ["vote_option_id", "vote_id", "vote_option_text", "vote_result"],
+      "primaryKey": "vote_option_id",
+      "foreignKeys": ["vote_id"]
+    },
+    "jforum_vote_voters": {
+      "columns": ["voter_id", "vote_id", "user_id", "vote_user_ip"],
+      "primaryKey": "voter_id",
+      "foreignKeys": ["vote_id", "user_id"]
+    },
+    "jforum_words": {
+      "columns": ["word_id", "word", "replacement"],
+      "primaryKey": "word_id",
+      "foreignKeys": []
+    },
+    "jforum_quota_limit": {
+      "columns": ["quota_limit_id", "quota_desc", "quota_limit", "quota_type"],
+      "primaryKey": "quota_limit_id",
+      "foreignKeys": []
+    },
+
+    "jforum_attach": {
+      "columns": ["attach_id", "post_id", "download_count", "physical_filename", "real_filename", "description", "mimetype", "filesize", "upload_date", "file_extension", "thumb"],
+      "primaryKey": "attach_id",
+      "foreignKeys": ["post_id"]
+    },
+    "jforum_attach_quota": {
+      "columns": ["attach_quota_id", "group_id", "quota_limit_id"],
+      "primaryKey": "attach_quota_id",
+      "foreignKeys": ["group_id","quota_limit_id"]
+    },
+    "jforum_moderation_log": {
+      "columns": ["log_id", "user_id", "log_description", "log_original_message", "log_date", "log_type", "post_id", "topic_id", "post_user_id"],
+      "primaryKey": "log_id",
+      "foreignKeys": ["user_id", "post_id"]
+    },
+
+    "jforum_avatar": {
+      "columns": ["avatar_id", "file_name", "avatar_type", "width", "height"],
+      "primaryKey": "avatar_id",
+      "foreignKeys": []
+
+    },
+    "jforum_forums_limited_time": {
+      "columns": ["imited_time_id", "forum_id", "limited_time"],
+      "primaryKey": "imited_time_id",
+      "foreignKeys": ["forum_id"]
+    }
+  }
+

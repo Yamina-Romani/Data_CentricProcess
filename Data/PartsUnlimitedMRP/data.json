@@ -1,0 +1,27 @@
+{
+  "catalog": {
+    "columns": ["catalogId", "skuNumber", "description", "price", "inventory", "leadTime"],
+    "primaryKey": ["catalogId"],
+    "foreignKeys": []
+  },
+  "dealers": {
+    "columns": ["dealerId", "name", "contact", "address", "email", "phone"],
+    "primaryKey": ["dealerId"],
+    "foreignKeys": []
+  },
+  "orders": {
+    "columns": ["orderDetailsId", "orderId", "quoteId", "orderDate", "orderStatus", "orderEventInfo"],
+    "primaryKey": ["orderDetailsId"],
+    "foreignKeys": ["quoteId"]
+  },
+  "quotes": {
+    "columns": ["quoteDetailsId", "quoteId", "validUntil", "customerName", "dealerName", "quoteItemInfo", "totalCost", "discount", "city", "postalCode", "state"],
+    "primaryKey": ["quoteDetailsId"],
+    "foreignKeys": ["quoteId", "dealerName"]
+  },
+  "shipments": {
+    "columns": ["shipmentId", "orderId", "shipmentEventInfo", "deliveryAddress", "contactName", "primaryContactPhone", "alternateContactPhone"],
+    "primaryKey": ["shipmentId"],
+    "foreignKeys": ["orderId"]
+  }
+}

@@ -1,0 +1,81 @@
+{
+    "vets": {
+        "columns": [
+            "vet_id",
+            "first_name",
+            "last_name"
+        ],
+        "primaryKey": [
+            "vet_id"
+        ],
+        "foreignKeys": []
+
+    },
+    "specialties": {
+        "columns": [
+            "speciality_id",
+            "name"
+        ],
+        "primaryKey": [
+            "speciality_id"
+        ],
+        "foreignKeys": []
+
+    },
+    "vet_specialties": {
+        "columns": [
+            "vet_id",
+            "specialty_id"
+        ],
+        "primaryKey": ["vet_id", "specialty_id"],
+        "foreignKeys": ["vet_id", "specialty_id"]
+    },
+    "types": {
+        "columns": [
+            "type_id",
+            "name"
+        ],
+        "primaryKey": [
+            "type_id"
+        ],
+        "foreignKeys": []
+
+    },
+    "owners": {
+        "columns": [
+            "owner_id",
+            "first_name",
+            "last_name",
+            "address",
+            "city",
+            "telephone"
+        ],
+        "primaryKey": [
+            "owner_id"
+        ],
+        "foreignKeys": []
+    },
+    "pets": {
+        "columns": [
+            "pet_id",
+            "name",
+            "birth_date",
+            "type_id",
+            "owner_id"
+        ],
+        "primaryKey": ["pet_id"],
+        "foreignKeys": ["owner_id", "type_id"]
+    },
+    "visits": {
+        "columns": [
+            "visit_id",
+            "pet_id",
+            "visit_date",
+            "description"
+        ],
+        "primaryKey": [
+            "visit_id"
+        ],
+        "foreignKeys": ["pet_id"]
+    }
+}
