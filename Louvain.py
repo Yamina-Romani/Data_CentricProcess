@@ -109,8 +109,9 @@ def louvain(vectors, call_matrix, dataClasses, project, min_, max_):
 
             if not done:
                 G.add_edge(i, j, weight=weight)
+    G=normalieWeightSum(G)
     # show graph
-    # showGraph(G, class_names)
+    #showGraph(G, class_names)
     # comparaison
     # comparaison.main(G)
 
@@ -119,10 +120,7 @@ def louvain(vectors, call_matrix, dataClasses, project, min_, max_):
     print("\n ")
     r = 1.0
     bestClusters = []
-    bestClusters_ = []
     bestModularity = 0
-    bestSMQ = 0
-    Clusters = []
     while 1.0 >= r >= 0:
         partition = community.best_partition(G, resolution=r)
 
@@ -166,6 +164,24 @@ def louvain(vectors, call_matrix, dataClasses, project, min_, max_):
     return bestClusters
 
 
+def normalieWeightSum(G):
+    # Extract all weights
+    weights = np.array([w for _, _, w in G.edges(data='weight')])
+
+    # Normalize weights to sum to 1
+    normalized_weights = weights / weights.sum()
+
+    # Assign normalized weights back to the graph
+    for i, (u, v, _) in enumerate(G.edges(data='weight')):
+        G[u][v]['weight'] = normalized_weights[i]
+
+    # Print normalized weights
+    """print("\nNormalized Weights (Sum to 1):")
+    for u, v, w in G.edges(data='weight'):
+        print(f"Edge ({u}, {v}): Weight = {w}")"""
+
+    return G
+
 def showGraph(G, classes):
     # Obtain the node identifiers automatically
     node_ids = list(G.nodes)  # This will return a list of node identifiers: [1, 2, 3]
@@ -174,7 +190,7 @@ def showGraph(G, classes):
     class_names = dict(zip(node_ids, classes))
 
     # select nodes
-    selected_node = [3, 4, 5, 6, 7, 8, 10, 13]
+    selected_node = [3, 4, 5, 6, 7, 8, 10, 18]
     H = G.subgraph(selected_node)
 
     # List of labels (example labels for the selected nodes)
@@ -193,10 +209,11 @@ def showGraph(G, classes):
     # pos = nx.circular_layout(H)
     pos = nx.shell_layout(H)
 
-    # Draw nodes and edges
-    nx.draw(H, pos, with_labels=False, node_color='lightblue', node_size=1000, font_size=15)
-    # Draw custom node labels
-    nx.draw_networkx_labels(H, pos, font_size=15)
+    # Disable default labels by setting `with_labels=False`
+    nx.draw(H, pos, with_labels=False, node_color='lightblue', node_size=1000)
+
+    #  Manually add only the desired labels (class names)
+    nx.draw_networkx_labels(H, pos, labels=class_names, font_size=15)
 
     # Draw edge labels (weights)
     edge_labels = nx.get_edge_attributes(H, 'weight')  # Get edge weights
